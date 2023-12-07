@@ -6,7 +6,19 @@ WORKDIR /app
 # only copy package.json
 COPY package.json .
 
+# only copy package.json
+COPY package.json .
+
 # download the project dependencies
+RUN npm install
+
+# copy everything from the react app folder to the /app folder in>
+COPY . .
+
+# package up the react project in the /app directory
+RUN npm run build
+
+CMD ["npm", "run", "start"]# download the project dependencies
 RUN npm install
 
 # copy everything from the react app folder to the /app folder in the container
